@@ -1,0 +1,45 @@
+Format:
+Wavelength[nm] , MeanValue[V] , StandardDeviation[%]
+Start: 1150.0, Stop: 350, Interval: 20, Delay: 0.5, Std. Dev. allowed: 5,  Lock-In time constant: 500 ms
+1150 , 5.184E-05 , 9.99191154747171 , Warning: Std Deviation too high!
+1130 , 9.17E-05 , 3.94548582663595
+1110 , 0.00016922 , 4.09332870265384
+1090 , 0.00018692 , 3.89806390108611
+1070 , 0.00023156 , 2.97190532260048
+1050 , 0.00028312 , 2.05084111364889
+1030 , 0.0003164 , 5.42799198686745 , Warning: Std Deviation too high!
+1010 , 0.00024762 , 2.09359833904719
+990 , 0.00024262 , 2.44132431728306
+970 , 0.00021592 , 26.5250900469994 , Warning: Std Deviation too high!
+950 , 0.00027674 , 2.60714465834404
+930 , 0.00012132 , 9.03726826866542 , Warning: Std Deviation too high!
+910 , 9.058E-05 , 3.23220302020394
+890 , 8.488E-05 , 5.63359899235404 , Warning: Std Deviation too high!
+870 , 7.166E-05 , 3.54143778664055
+850 , 6.152E-05 , 8.24646265785812 , Warning: Std Deviation too high!
+830 , 5.686E-05 , 11.9312847986601 , Warning: Std Deviation too high!
+810 , 5.58E-05 , 6.44563641940189 , Warning: Std Deviation too high!
+790 , 6.188E-05 , 12.3870227745424 , Warning: Std Deviation too high!
+770 , 6.368E-05 , 5.35984773366656 , Warning: Std Deviation too high!
+750 , 7.174E-05 , 8.0220693898421 , Warning: Std Deviation too high!
+730 , 7.998E-05 , 3.08389033452849
+710 , 6.196E-05 , 5.82417085152813 , Warning: Std Deviation too high!
+690 , 8.022E-05 , 2.73440034682013
+670 , 7.804E-05 , 5.54984220754064 , Warning: Std Deviation too high!
+650 , 7.774E-05 , 7.24020381416096 , Warning: Std Deviation too high!
+630 , 7.622E-05 , 5.0109835687144 , Warning: Std Deviation too high!
+610 , 6.208E-05 , 5.72003843298105 , Warning: Std Deviation too high!
+590 , 6.186E-05 , 11.6777838269738 , Warning: Std Deviation too high!
+570 , 6.312E-05 , 6.51863040985236 , Warning: Std Deviation too high!
+550 , 6.352E-05 , 3.87471538108652
+530 , 6.418E-05 , 8.27235830947758 , Warning: Std Deviation too high!
+510 , 5.952E-05 , 20.5359454352518 , Warning: Std Deviation too high!
+490 , 4.032E-05 , 11.3962146672813 , Warning: Std Deviation too high!
+470 , 3.972E-05 , 9.66505083587589 , Warning: Std Deviation too high!
+450 , 2.736E-05 , 30.1322138167268 , Warning: Std Deviation too high!
+430 , 2.762E-05 , 25.8812397611309 , Warning: Std Deviation too high!
+410 , 1.286E-05 , 28.2350926197095 , Warning: Std Deviation too high!
+390 , 1.826E-05 , 10.4833639648646 , Warning: Std Deviation too high!
+370 , 1.098E-05 , 49.8866502616371 , Warning: Std Deviation too high!
+350 , 1.572E-05 , 46.0665220667007 , Warning: Std Deviation too high!
+

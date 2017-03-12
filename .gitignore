@@ -1,0 +1,16 @@
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.log
+*.synctex.gz
+*.toc
+*.dvi
+*.tsp
+auto/
+
+#emacs saved files
+*~
+\#*\#
+
+bilder/

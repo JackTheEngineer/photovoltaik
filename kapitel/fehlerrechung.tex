@@ -1,0 +1,18 @@
+\section{Berechnung der Messunsicherheiten}
+Unter Verwendung der
+gaußschen Fehlerfortpflanzung \ref{equ:staterr} wurden die
+Fehler der Fits mit
+\begin{equation}
+	\sigma_{f(x_1,x_2,...)} = \sum\limits_{i=1}^n \abs{\frac{\partial f}{\partial x_i}\cdot \sigma_{x_i}}
+	\label{equ:syserr}
+\end{equation}
+\begin{equation}
+	\sigma_{f(x_1,x_2,...)} = \sqrt{\sum\limits_{i=1}^n (\frac{\partial f}{\partial x_i} \cdot \sigma_{x_i})^2}
+	\label{equ:staterr}
+\end{equation}
+errechnet.
+Ensprechend wurden die Längen der Fehlerbalken ermittelt.
+Für die Berechnungen und das Plotten der Graphen wurde ein Pythonskript geschrieben.
+Dieses kann auf der Webseite \url{https://github.com/JackTheEngineer/photovoltaik}
+im Ordner \texttt{calc/} eingesehen werden.
+

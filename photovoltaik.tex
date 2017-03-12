@@ -1,0 +1,85 @@
+\documentclass[
+    a4paper,
+    ngerman,
+    11pt
+]{scrartcl}
+%   options include 12pt or 11pt or 10pt
+%   classes include article, report, book, letter, thesis
+
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[]{babel}
+
+% for pictures
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{epstopdf}
+
+% for citing urls correctly 
+\usepackage{url}
+\usepackage{hyperref}
+
+\usepackage{listings}
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=Python,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{black},
+  stringstyle=\color{blue},
+}
+\lstset{style=customc}
+
+\usepackage[space]{grffile}
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage[table]{xcolor}
+
+\title{Molekulare Motoren}
+\author{Gruppe 26\\ Anh Tong, Tobias Theil, Kholodkov Jakov }
+\date{\today}
+
+% stands for the degree sign 
+\newcommand{\dee}{{$^{\circ}$}} 	
+\newcommand{\degr}{^{\circ}}
+\newcommand{\shf}{$SF_6$}
+\newcommand{\abs}[1]{\ensuremath{\left\vert#1\right\vert}}
+
+\begin{document}
+	
+\maketitle
+\tableofcontents
+\bibliography{literatur}
+\bibliographystyle{unsrt}
+
+\newpage
+\input{kapitel/einleitung.tex}
+\input{kapitel/methoden.tex}
+\input{kapitel/fragen.tex}
+\input{kapitel/ergebnisse_mit_unsicherheiten.tex}
+\input{kapitel/fehlerrechung.tex}
+%\input{kapitel/diskussion.tex} 
+\input{kapitel/zusammenfassung.tex}
+
+% Anhaege w
+%\begin{appendix}
+%\input{kapitel/anhang.tex}
+%\end{appendix}
+ 
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
