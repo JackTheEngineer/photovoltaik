@@ -16,7 +16,7 @@ from Measurement import LinFit
 plotsize_x = 9
 plotsize_y = 1/1.667 * plotsize_x # golden ratio for good looking graphs
 
-min_wavelenghts = list([1955.0, 1515.00, 1245.00])
+min_wavelenghts = [1955.0, 1515.00, 1245.00]
 refr_indizes_of_silicon = []
 
 e_charge = 1.602176*10**(-19)
@@ -100,7 +100,6 @@ def append_latex_picure_to_file(openedfile, picturefilename, caption, reference)
 def Extract_data_from_file(filename, buzzword, sep = " "):
     wls = []
     nums = []
-    errs = []
     with open("../measurements/"+filename, "r") as filee:
         lines = filee.readlines()
 
@@ -119,24 +118,17 @@ def Extract_data_from_file(filename, buzzword, sep = " "):
 
     filteredlines = filter(line_is_a_data_line, lines)
     
-    for uncleaned in filteredlines:
-        vals = []
-        for value in uncleaned.split(sep):
-            num_or_string = value.strip()
-            vals.append(num_or_string)
+    for value in filteredlines:
+        vals = value.split()
+        wls.append(float(vals[0]))
+        nums.append(float(vals[1]))
 
-        if vals[0] and vals[1]:
-            wls.append(float(vals[0]))
-            nums.append(float(vals[1]))
-            if vals[2]:
-                errs.append(float(vals[2]))
-        
+    return (list(wls), list(nums), [0])
     
     
-    return (list(wls), list(nums), list(errs))
 
 
-def plot_Graph(x_arry, y_arry, filename, dot_label, y_label, x_label, y_errs = False, x_errs = 0):
+def plot_Graph(x_arry, y_arry, filename, dot_label, y_label, x_label, y_errs = None, x_errs = 0):
     figure = plt.figure()
     figure.set_size_inches(plotsize_x,plotsize_y)
     axis = figure.add_subplot(111)
@@ -145,10 +137,10 @@ def plot_Graph(x_arry, y_arry, filename, dot_label, y_label, x_label, y_errs = F
 
     axis.yaxis.set_minor_locator(minorLocator1)
     axis.xaxis.set_minor_locator(minorLocator2)
-    if(y_errs.any()):
-        axis.errorbar(x_arry, y_arry, xerr = x_errs, yerr =  y_errs, fmt = 'b^', label = dot_label)
+    if(y_errs is None):
+        axis.plot(x_arry, y_arry , 'k.', label = dot_label)
     else:
-        axis.plot(x_arry, y_arry , 'b.', label = dot_label)
+        axis.errorbar(x_arry, y_arry, xerr = x_errs, yerr =  y_errs, fmt = 'b^', label = dot_label)
     axis.legend(loc="best")
     axis.yaxis.grid(True, which='minor')
 #    axis.yaxis.grid(True, which='') 
@@ -158,25 +150,14 @@ def plot_Graph(x_arry, y_arry, filename, dot_label, y_label, x_label, y_errs = F
     plt.ylabel(y_label)
     figure.savefig(filename, bbox_inches='tight')
 
-def plot_reflection_graphs():
-    ref_file = open("../kapitel/piture_references.txt","w")
+def plot_reflection_graphs(ref_file):
     for pl in FileNames:
-        (wavelengths, reflections) = Extract_data_from_file(pl["FileName"], "\#DATA")
+        (wavelengths, reflections, trash) = Extract_data_from_file(pl["FileName"], "\#DATA")
 
         picturename  = "../bilder/"+pl["FileName"].split(".")[0]+".jpeg" 
         plot_Graph(wavelengths, reflections, picturename, pl["Material"], r"reflectivity in %", r"$\lambda$ in nm")
         append_latex_picure_to_file(ref_file, picturename[3:], pl["Material"], "fig:"+pl["FileName"].split(".")[0].lower())
-    ref_file.close()
 
-        
-def plot_refractive_Index():
-    csi = FileNames[-1]
-    (wavelengths, reflections, trash) = Extract_data_from_file(csi["FileName"], "\#DATA")
-    #Using refractive index of air = 1
-    n_of_R = lambda R : (math.sqrt(R) + 1)/(math.sqrt(R) - 1)
-    refr_indizes = map(n_of_R, reflections)
-    plot_Graph(wavelengths, refr_indizes, "../bilder/refr_index.jpeg","Refractive Index of crystalline silicon", r"Refractive Index", r"$\lambda$ in nm")
-    return dict(zip(wavelengths, refr_indizes))
 
 def Calculate_thickness_amorph_sil(refr_indizes_of_sil, min_wls):
     if(len(min_wavelenghts) != len(refr_indizes_of_sil)):
@@ -195,16 +176,30 @@ def Calculate_thickness_amorph_sil(refr_indizes_of_sil, min_wls):
     print("average of thicknesses: " + str(avg))
     print("stdev: " + str(dev))
 
+n_of_R = lambda R : (math.sqrt(R) + 1)/(math.sqrt(R) - 1)
+
+def plot_refractive_Index():
+    csi = FileNames[-1]
+    (wavelengths, reflections, trash) = Extract_data_from_file(csi["FileName"], "\#DATA")
+    #Using refractive index of air = 1
+    refr_indizes = map(n_of_R, reflections)
+    plot_Graph(wavelengths, refr_indizes, "../bilder/refr_index.jpeg","Refractive Index of crystalline silicon", r"Refractive Index", r"$\lambda$ in nm")
+    
 def refractive_indizes_info():
+    csi = FileNames[-1]
     refr_i = []
-    refr_dict = plot_refractive_Index()
+    
+    (wavelengths, reflections, trash) = Extract_data_from_file(csi["FileName"], "\#DATA")
+    refr_indizes = map(n_of_R, reflections)
+
     for wl in min_wavelenghts:
-        refr_i.append(refr_dict[wl])
+        refr_i.append(refr_indizes[wavelengths.index(wl)])
+        
     print("Refractive Indizes for wavelenghts: " + str(refr_i))
     print("Wavelenghts: " + str(min_wavelenghts))
     Calculate_thickness_amorph_sil(refr_i, min_wavelenghts)
 
-def plot_voltage_graph():
+def plot_voltage_graph(ref_file):
     for pl in lighted_graphs:
         zero_index = pl["zero_index"]
         p_diff = pl["p_diff"]
@@ -293,7 +288,7 @@ def plot_voltage_graph():
         zero_index = pl["zero_index"]
         p_diff = pl["p_diff"]
         m_diff = pl["m_diff"]
-        (voltage, current) = Extract_data_from_file(pl["FileName"], "Delay: 1.0ms")
+        (voltage, current, trash) = Extract_data_from_file(pl["FileName"], "Delay: 1.0ms")
         scaled_curr = np.array(current) * 1000
         picturename  = "../bilder/"+pl["FileName"].split(".")[0]+".jpeg" 
         
@@ -364,11 +359,12 @@ def power():
 
         
 def main():
-    ref_file = open("../kapitel/piture_references.txt","w")
-    # plot_reflection_graphs()
-    # refractive_indizes_info()
-    # plot_voltage_graph()
-    # power()
+    ref_file = open("../kapitel/picture_references.txt","w")
+    plot_reflection_graphs(ref_file)
+    plot_refractive_Index()
+    refractive_indizes_info()
+    plot_voltage_graph(ref_file)
+    power()
     ref_file.close()
 
     

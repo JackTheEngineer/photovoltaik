@@ -75,6 +75,13 @@ def plot_Graph(x_arry, y_arry, filename, dot_label, y_label, x_label, y_errs = N
     plt.ylabel(y_label)
     figure.savefig(filename, bbox_inches='tight')
 
+def find_index(array, value):
+    index = 0
+    for num in array:
+        if num == value:
+            return index
+        else:
+            index = index+1
 
 def elektronenrate():
 # The pyro, csi and asi are datasets, the first
@@ -86,11 +93,8 @@ def elektronenrate():
     asi = np.array(Extract_data_from_file("../measurements/elektronenrate_aSi.dat","Start:", ","))
     csi = np.array(Extract_data_from_file("../measurements/elektronenrate_cSi.dat", "Start:", ","))
 
-    h = 6.62607004E-34
-    c = 2.99792458E8
+    wls = csi[0] # Wavelenghts
 # Elektrons per Coulomb of charge
-    COUL = 6.242*10**18
-    R = 10.0 # Was the resistor 10 Ohms ? I am nor sure anymore
 
 # Factor for the calibration of the pyrodetector
 # 1 Watt of Lightpower gives 2878 Volt of output
@@ -99,11 +103,24 @@ def elektronenrate():
 # numpy - arrays is element -wise, so
 # np.array([2, 4, 8]) * np.array([1,6,5]) = [2, 24, 40]
 # np.arrays can be mutiplied by constants
-    QEF = (csi[1]*h*c*COUL)/(pyro[1]*PYR_C*csi[0]*10.0)
+
+    qef_csi = list((csi[1])/(pyro[1]*wls))
+    csi_err = csi[1]*csi[2]*0.01
+    pyro_err = pyro[1]*pyro[2]*0.01
+    qef_csi_err = np.sqrt(((csi_err/(pyro[1]*wls))**2 + ((csi[1])*pyro_err/(pyro[1]**2*wls)))**2)
+    plateau_begin_index = list(csi[0]).index(950.0) 
+    plateau_end_index = list(csi[0]).index(1030.0)
+    level_90_percent = np.average(qef_csi[plateau_end_index:plateau_begin_index])
+
+    qef_asi = list((asi[1])/(pyro[1]*wls*level_90_percent))
+    asi_err = asi[1]*asi[2]*0.01
+    qef_asi_err = np.sqrt(((asi_err/(pyro[1]*wls*level_90_percent))**2 + ((asi[1])*pyro_err/(pyro[1]**2*wls*level_90_percent)))**2)
+    
     
     plot_Graph(asi[0], asi[1], "../bilder/Spannungen_aSi.jpeg","aSi", "Voltage", "wavelengh in nm", y_errs = asi[1] * asi[2] * 0.01)
     plot_Graph(csi[0], csi[1], "../bilder/Spannungen_cSi.jpeg","cSi", "Measured Voltage", "wavelengh in nm")
-    plot_Graph(csi[0], QEF, "../bilder/Quanteneffizienz.jpeg","cSi", "quantum-efficiency", "wavelengh in nm")
+    plot_Graph(csi[0], qef_csi/level_90_percent, "../bilder/Quanteneffizienz_csi.jpeg","cSi", "quantum-efficiency", "wavelengh in nm", y_errs = qef_csi_err/level_90_percent)
+    plot_Graph(asi[0], qef_asi, "../bilder/Quanteneffizienz_asi.jpeg","cSi", "quantum-efficiency", "wavelengh in nm", y_errs = qef_asi_err)
     plot_Graph(pyro[0], pyro[1], "../bilder/photonenrate.jpeg","Measured pyro voltage", "Photonrate in A", "wavelengh in nm", y_errs = pyro[1]*pyro[2] * 0.01)    
 
     

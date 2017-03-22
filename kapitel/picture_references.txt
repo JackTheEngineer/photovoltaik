@@ -1,0 +1,70 @@
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/PyramidSilizium.jpeg}
+	\caption{silicon mit pyramidal surface}
+	\label{fig:pyramidsilizium}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/BlackSilizium.jpeg}
+	\caption{black silicon}
+	\label{fig:blacksilizium}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/AntiReflectiveCoating.jpeg}
+	\caption{silicon with antireflective coating}
+	\label{fig:antireflectivecoating}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/AmorphSilizium.jpeg}
+	\caption{amorphous silicon}
+	\label{fig:amorphsilizium}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/CSIROUGH.jpeg}
+	\caption{rough crystalline silicon}
+	\label{fig:csirough}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/CSIFLAT.jpeg}
+	\caption{flat crystalline silicon}
+	\label{fig:csiflat}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/aSi_hell.jpeg}
+	\caption{amorphous silicon with light}
+	\label{fig:asi_hell}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/cSi_hell.jpeg}
+	\caption{crystalline silicon with light}
+	\label{fig:csi_hell}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/aSi_dunkel.jpeg}
+	\caption{amorphous silicon without light}
+	\label{fig:asi_dunkel}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/cSi_dunkel.jpeg}
+	\caption{crystalline silicon without light}
+	\label{fig:csi_dunkel}
+\end{figure}
+
