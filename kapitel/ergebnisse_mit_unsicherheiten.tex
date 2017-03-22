@@ -1,3 +1,137 @@
 \section{Experimentelles Vorgehen und Ergebnisse}
+First, we measured the wavelength - dependent reflectivity of six different  surfaces.
+Those Materials were amourphous siclicon, crystalline silicon with a flat side, crystalline silicon with a rough side, silicon with a pyramidal structure on it's surface, black silicon and silicon with an antireflective coating for a wavelenght of 660nm.
+Black silicon also has a pyramidal structure on it's surface, but for the black silicon the dimensions of the pyramids are smaller than the absorbing wavelenght. This creates a smooth transition from the refractive index of air to the refractive index of silicon, sucking in the light.
+
+\begin{equation}
+  d = \frac{(2m + 1)}{2} \cdot \lambda
+  \label{equ:thickness}
+\end{equation}
+
+\begin{equation}
+  m = \frac{1}{2} \big( \frac{\lambda_2}{\lambda_1 - \lambda_2} - 1 \big)
+  \label{equ:numwls}
+\end{equation}
+$\lambda_1 > \lambda_2$
+
+\begin{equation}
+  n(\lambda) = \frac{\sqrt{R(\lambda)} + 1 }{ \sqrt{R(\lambda)} - 1}
+  \label{equ:refr_ind}
+\end{equation}
+
+\begin{equation}
+  QEF = \frac{I_{el}}{I_{photo}} = \frac{\sfrac{U}{R}}{\sfrac{P_{light}}{\sfrac{hc}{\lambda}}}
+\end{equation}
+mit $I_{photo} = \frac{P_{light}}{\frac{hc}{\lambda}} $ 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/aSi_hell.jpeg}
+	\caption{amorphous silicon with light}
+	\label{fig:asi_hell}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/cSi_hell.jpeg}
+	\caption{crystalline silicon with light}
+	\label{fig:csi_hell}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/aSi_dunkel.jpeg}
+	\caption{amorphous silicon without light}
+	\label{fig:asi_dunkel}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/cSi_dunkel.jpeg}
+	\caption{crystalline silicon without light}
+	\label{fig:csi_dunkel}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/PyramidSilizium.jpeg}
+	\caption{silicon mit pyramidal surface}
+	\label{fig:pyramidsilizium}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/BlackSilizium.jpeg}
+	\caption{black silicon}
+	\label{fig:blacksilizium}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/AntiReflectiveCoating.jpeg}
+	\caption{silicon with antireflective coating}
+	\label{fig:antireflectivecoating}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/AmorphSilizium.jpeg}
+	\caption{amorphous silicon}
+	\label{fig:amorphsilizium}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/CSIROUGH.jpeg}
+	\caption{rough crystalline silicon}
+	\label{fig:csirough}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{bilder/CSIFLAT.jpeg}
+	\caption{flat crystalline silicon}
+	\label{fig:csiflat}
+\end{figure}
 
 
+% Refractive Indizes for wavelenghts: [1.3401542420709966, 1.3385464618428113, 1.3373465151339419]
+% Wavelenghts: [1955.0, 1515.0, 1245.0]
+% average of thicknesses: 2573.78551071
+% stdev: 48.8916559744
+
+% aSi_hell R_s:
+% Slope: 0.221248354141 +- 0.00598591154658 * 1000
+% Fuellfakt: 0.663517208309
+% U0: 0.82
+% I0: -0.4001816
+% Uopt: 0.65
+% Iopt: -0.334973
+
+% cSi_hell R_s:
+% Slope: 0.0189208144653 +- 0.00113852276373 * 1000
+% Fuellfakt: 0.63293947741
+% U0: 0.5
+% I0: -3.466276
+% Uopt: 0.38
+% Iopt: -2.886767
+% P_opt = 0.00109 W
+
+% aSi_dunkel R_p:
+% Slope: 61855.6343105 +- 1147.30124568 * 1000
+% cSi_dunkel R_p:
+% Slope: 5.89957259165 +- 0.0459836610314 * 1000
+
+% Amorph Sil:
+% Popt: 0.21773245 +- 0.0916000818777
+% EFF: 0.0308028406125 +- 0.0143485915401
+% Crystalline Sil:
+% Popt: 1.09697146 +- 0.268660892204
+% EFF: 0.155189715813 +- 0.0490707888432
+
+% power = 0.0070 W  die pro solarzelle einfallen
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../photovoltaik"
+%%% End:

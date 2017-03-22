@@ -69,6 +69,9 @@ class LinFit(object):
     def calc(self, x): 
         return float(self.slope) * float(x) + float(self.y_axis)
 
+    def inv(self, y):
+        return (float(y) - float(self.y_axis))/float(self.slope)
+    
 # class colour_max_measurement(object):
     # def __init__(self, name, distance, x_values, y_values):
         # self.x_values = np.array(values)

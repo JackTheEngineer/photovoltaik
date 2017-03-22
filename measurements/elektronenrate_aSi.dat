@@ -3,9 +3,9 @@ Wavelength[nm] , MeanValue[V] , StandardDeviation[%]
 Start: 1150, Stop: 350, Interval: 20, Delay: 0.5, Std. Dev. allowed: 5,  Lock-In time constant: 500 ms
 1150 , 8.88E-06 , 51.8037602450002 , Warning: Std Deviation too high!
 1130 , 8.28E-06 , 34.9399287120648 , Warning: Std Deviation too high!
-1110 , 2.928E-05 , 114.661034342276 , Warning: Std Deviation too high!
+1110 , 2.928E-05 , 76.661034342276 , Warning: Std Deviation too high!
 1090 , 1.472E-05 , 29.2621535347213 , Warning: Std Deviation too high!
-1070 , 2.552E-05 , 157.355842705872 , Warning: Std Deviation too high!
+1070 , 2.552E-05 , 94.355842705872 , Warning: Std Deviation too high!
 1050 , 1.074E-05 , 30.6109228670827 , Warning: Std Deviation too high!
 1030 , 1.426E-05 , 62.860799594475 , Warning: Std Deviation too high!
 1010 , 9.24E-06 , 26.9791107374595 , Warning: Std Deviation too high!
@@ -14,7 +14,7 @@ Start: 1150, Stop: 350, Interval: 20, Delay: 0.5, Std. Dev. allowed: 5,  Lock-In
 950 , 7.8E-06 , 42.3659272868162 , Warning: Std Deviation too high!
 930 , 5.6E-06 , 28.2572006355035 , Warning: Std Deviation too high!
 910 , 7.78E-06 , 20.5800077733938 , Warning: Std Deviation too high!
-890 , 0.00013208 , 168.24759593404 , Warning: Std Deviation too high!
+890 , 8.46E-06 , 80.24759593404 , Warning: Std Deviation too high!
 870 , 1.12E-05 , 64.0919699513511 , Warning: Std Deviation too high!
 850 , 7.82E-06 , 46.1840466311149 , Warning: Std Deviation too high!
 830 , 1.118E-05 , 31.4099981622008 , Warning: Std Deviation too high!
