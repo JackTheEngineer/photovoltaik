@@ -6,6 +6,7 @@ import scipy.stats
 import scipy.optimize
 import matplotlib.pyplot as plt
 import re
+import os
 import sys
 from matplotlib.ticker import AutoMinorLocator
 import matplotlib.patches as patches
@@ -18,7 +19,7 @@ def Extract_data_from_file(filename, buzzword, sep = " "):
     wls = []
     nums = []
     errs = []
-    with open("../measurements/"+filename, "r") as filee:
+    with open(filename, "r") as filee:
         lines = filee.readlines()
 
     for line in lines:
@@ -45,12 +46,10 @@ def Extract_data_from_file(filename, buzzword, sep = " "):
         if vals[0] and vals[1]:
             wls.append(float(vals[0]))
             nums.append(float(vals[1]))
-            if vals[2]:
+            if len(vals) > 2:
                 errs.append(float(vals[2]))
         
-    
-    
-    return (list(wls), list(nums), list(errs))
+    return np.array(((wls), (nums), (errs)))
 
 
 def plot_Graph(x_arry, y_arry, filename, dot_label, y_label, x_label, y_errs = None, x_errs = 0):
@@ -63,10 +62,10 @@ def plot_Graph(x_arry, y_arry, filename, dot_label, y_label, x_label, y_errs = N
     axis.yaxis.set_minor_locator(minorLocator1)
     axis.xaxis.set_minor_locator(minorLocator2)
     if(y_errs is None):
-        axis.plot(x_arry, y_arry , 'b.', label = dot_label)
+        axis.plot(x_arry, y_arry , 'k.', label = dot_label)
     else:
-        axis.errorbar(x_arry, y_arry, xerr = x_errs, yerr =  y_errs, fmt = 'b^', label = dot_label)
-    axis.legend(loc="upper left")
+        axis.errorbar(x_arry, y_arry, xerr = x_errs, yerr =  y_errs, fmt = 'k.', label = dot_label)
+    axis.legend(loc="best")
     axis.yaxis.grid(True, which='minor')
     axis.yaxis.grid(True, which='major') 
     axis.xaxis.grid(True, which='minor')
@@ -75,14 +74,28 @@ def plot_Graph(x_arry, y_arry, filename, dot_label, y_label, x_label, y_errs = N
     plt.ylabel(y_label)
     figure.savefig(filename, bbox_inches='tight')
 
-def find_index(array, value):
-    index = 0
-    for num in array:
-        if num == value:
-            return index
-        else:
-            index = index+1
-
+def Integrate_over_sun_specre(quantum_efficiency):
+    # delta lambda is 20 nanometers, one has to integrate over lambda
+    h = 6.62607004E-34
+    c = 299792458.0
+    hc = h * c
+    # Useful values only come out
+    # if i assume that the spectral power density already
+    # has the calculation of the width of the polygons in it
+    dlamb = 20 * 1.0E-9 # 20 nanometer wide polygon, THIS VALUE IS NOT USED
+    spectral_dens = np.array(Extract_data_from_file("../measurements/Sonne20.txt","wavelength"))
+    # Watt per cm **2
+    Watt_per_cm2 = np.array(spectral_dens[1]) * 1.0E-3 # data was given im mW
+    wls = np.array(spectral_dens[0]) * 1.0E-9 # data was given in  nanometers -> now meters
+    I = 0.0
+    Area_in_cm2 = math.pi * 0.15**2  # radius of the hole = 0.15 cm 
+    # Simple polygonal integration
+    for i in range( len(wls)-1): # i is index of array
+        P = (Watt_per_cm2[i] + Watt_per_cm2[i+1])/2 * Area_in_cm2
+        I = I + (P * wls[i]* quantum_efficiency[i])/(hc)
+    return I
+        
+            
 def elektronenrate():
 # The pyro, csi and asi are datasets, the first
 # pyro[0]  contains  the Wavelenghts (as a numpy array), the second,
@@ -94,11 +107,7 @@ def elektronenrate():
     csi = np.array(Extract_data_from_file("../measurements/elektronenrate_cSi.dat", "Start:", ","))
 
     wls = csi[0] # Wavelenghts
-# Elektrons per Coulomb of charge
 
-# Factor for the calibration of the pyrodetector
-# 1 Watt of Lightpower gives 2878 Volt of output
-    PYR_C = 1.0/2878.0
 # Quantum - efficiency. The multiplication of
 # numpy - arrays is element -wise, so
 # np.array([2, 4, 8]) * np.array([1,6,5]) = [2, 24, 40]
@@ -116,18 +125,25 @@ def elektronenrate():
     asi_err = asi[1]*asi[2]*0.01
     qef_asi_err = np.sqrt(((asi_err/(pyro[1]*wls*level_90_percent))**2 + ((asi[1])*pyro_err/(pyro[1]**2*wls*level_90_percent)))**2)
     
-    
-    plot_Graph(asi[0], asi[1], "../bilder/Spannungen_aSi.jpeg","aSi", "Voltage", "wavelengh in nm", y_errs = asi[1] * asi[2] * 0.01)
+    plot_Graph(asi[0], asi[1], "../bilder/Spannungen_aSi.jpeg","aSi", "Measured Voltage", "wavelengh in nm", y_errs = asi[1] * asi[2] * 0.01)
     plot_Graph(csi[0], csi[1], "../bilder/Spannungen_cSi.jpeg","cSi", "Measured Voltage", "wavelengh in nm")
-    plot_Graph(csi[0], qef_csi/level_90_percent, "../bilder/Quanteneffizienz_csi.jpeg","cSi", "quantum-efficiency", "wavelengh in nm", y_errs = qef_csi_err/level_90_percent)
-    plot_Graph(asi[0], qef_asi, "../bilder/Quanteneffizienz_asi.jpeg","cSi", "quantum-efficiency", "wavelengh in nm", y_errs = qef_asi_err)
-    plot_Graph(pyro[0], pyro[1], "../bilder/photonenrate.jpeg","Measured pyro voltage", "Photonrate in A", "wavelengh in nm", y_errs = pyro[1]*pyro[2] * 0.01)    
+    plot_Graph(csi[0], qef_csi/level_90_percent, "../bilder/Quanteneffizienz_csi.jpeg","crystalline silicon", "quantum-efficiency", "wavelengh in nm", y_errs = qef_csi_err/level_90_percent)
+    plot_Graph(asi[0], qef_asi, "../bilder/Quanteneffizienz_asi.jpeg","amorphous silicon", "quantum-efficiency", "wavelengh in nm", y_errs = qef_asi_err)
+    plot_Graph(pyro[0], pyro[1], "../bilder/photonenrate.jpeg","Pyrodetector voltage","Measured pyrodetector voltage" , "wavelengh in nm", y_errs = pyro[1]*pyro[2] * 0.01)
+    coulomb = 6.2415E+18
+    I_csi = Integrate_over_sun_specre(qef_csi)/coulomb
+    I_asi = Integrate_over_sun_specre(qef_asi)/coulomb
 
-    
+    sun_spectral_dens = np.array(Extract_data_from_file("../measurements/Sonne20.txt","wavelength"))
+    plot_Graph(sun_spectral_dens[0], sun_spectral_dens[1], "../bilder/Sonnenspektrum.jpeg", "Sonnenspektrum", r"$\frac{mW}{cm^2} \cdot 20nm$", "wavelength in nm")
+
+    print("I_csi: " + str(I_csi))
+    print("I_asi: " + str(I_asi))
+
 def main():
+    if not os.path.isdir("../bilder"):
+        os.mkdir("../bilder")
     elektronenrate()
-
-
     
 if __name__ == "__main__":
     main()

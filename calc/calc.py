@@ -6,6 +6,7 @@ import scipy.stats
 import scipy.optimize
 import matplotlib.pyplot as plt
 import re
+import os
 import sys
 from matplotlib.ticker import AutoMinorLocator
 import matplotlib.patches as patches
@@ -140,7 +141,7 @@ def plot_Graph(x_arry, y_arry, filename, dot_label, y_label, x_label, y_errs = N
     if(y_errs is None):
         axis.plot(x_arry, y_arry , 'k.', label = dot_label)
     else:
-        axis.errorbar(x_arry, y_arry, xerr = x_errs, yerr =  y_errs, fmt = 'b^', label = dot_label)
+        axis.errorbar(x_arry, y_arry, xerr = x_errs, yerr =  y_errs, fmt = 'k.', label = dot_label)
     axis.legend(loc="best")
     axis.yaxis.grid(True, which='minor')
 #    axis.yaxis.grid(True, which='') 
@@ -359,6 +360,8 @@ def power():
 
         
 def main():
+    if not os.path.isdir("../bilder"):
+        os.mkdir("../bilder")
     ref_file = open("../kapitel/picture_references.txt","w")
     plot_reflection_graphs(ref_file)
     plot_refractive_Index()

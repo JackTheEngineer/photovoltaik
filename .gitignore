@@ -12,5 +12,5 @@ auto/
 #emacs saved files
 *~
 \#*\#
-
-bilder/
+*.jpeg
+*.png
