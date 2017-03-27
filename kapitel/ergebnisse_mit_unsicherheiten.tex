@@ -1,142 +1,235 @@
-\section{Experimentelles Vorgehen und Ergebnisse}
+\section{Experimental Results}
 First, we measured the wavelength - dependent reflectivity of six different  surfaces.
-Those Materials were amourphous siclicon, crystalline silicon with a flat side, crystalline silicon with a rough side, silicon with a pyramidal structure on it's surface, black silicon and silicon with an antireflective coating for a wavelenght of 660nm.
-Black silicon also has a pyramidal structure on it's surface, but for the black silicon the dimensions of the pyramids are smaller than the absorbing wavelenght. This creates a smooth transition from the refractive index of air to the refractive index of silicon, sucking in the light.
+Those Materials were amourphous siclicon, crystalline silicon with a flat side,
+crystalline silicon with a rough side, silicon with a pyramidal structure on it's surface,
+black silicon and silicon with an antireflective coating for a wavelenght of 660nm.
+Black silicon also has a pyramidal structure on it's surface, but the dimensions of
+these pyramids are smaller than the absorbing wavelenght. This creates a smooth transition
+from the refractive index of air to the refractive index of silicon, sucking in the light.
 
+\subsection{Optical properties of crystalline silicon}
+With two material of two different refractive indices $n_1$ and $n_2$,
+the reflectivity is given by equation \ref{equ:reflect}.
 \begin{equation}
-  d = \frac{(2m + 1)}{2} \cdot \lambda
-  \label{equ:thickness}
+  R = \bigg(\frac{n_2 - n_1}{n_1 + n_2}\bigg)^2
+  \label{equ:reflect}
 \end{equation}
-
-\begin{equation}
-  m = \frac{1}{2} \big( \frac{\lambda_2}{\lambda_1 - \lambda_2} - 1 \big)
-  \label{equ:numwls}
-\end{equation}
-$\lambda_1 > \lambda_2$
-
+With an approximated refractive Index of air of 1.0,
+the equation formulates to \ref{equ:refr_ind}. After applying the equation to each datapoint in figure \ref{fig:csiflat} one gets the wavelength-dependent reflections of crystalline silicon, seen in figure \ref{fig:refr_index}. 
 \begin{equation}
   n(\lambda) = \frac{\sqrt{R(\lambda)} + 1 }{ \sqrt{R(\lambda)} - 1}
   \label{equ:refr_ind}
 \end{equation}
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{bilder/CSIFLAT.jpeg}
+    \caption{reflectivity of flat crystalline silicon} 
+    \label{fig:csiflat}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{bilder/refr_index.jpeg}
+    \caption{refractive index of crystalline silicon}
+    \label{fig:refr_index}
+  \end{subfigure}
+  \caption{properties of flat crystalline silicon}
+\end{figure}
 
+\paragraph{Silicon with nonflat surfaces}
+Another form to reduce the reflections on the silicon is to increase its effective
+surface. There are two variations of the preparation.
+One is to make the silicon rough and create irregular shapes on the surface, increasing the size of the surface.
+Another way is to put a strong acid on the surface of the flat silicon.
+Due to the crystalline structure of the silicon the acid etches small square pyramids into the surface.
+This increases the surface for the incoming light, and increases the way for the light through the silicon,
+making the absorbtion of a photon more probable. 
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{bilder/PyramidSilizium.jpeg}
+    \caption{silicon mit pyramidal surface}n
+    \label{fig:pyramidsilizium}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{bilder/CSIROUGH.jpeg}
+    \caption{rough crystalline silicon}
+    \label{fig:csirough}
+  \end{subfigure}
+  \caption{reflectivities for rough and pyramidal silicon}
+\end{figure}
+As described above, the black silicon has small needles with a thickness of a few hundreds nanometers and a length
+of about 5$\mu$m on the surface,
+which create a smooth transision of the refractive index from air to silicon.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{bilder/BlackSilizium.jpeg}
+  \caption{black silicon}
+  \label{fig:blacksilizium}
+\end{figure}
+
+\subsection{Amorphous silicon}
+The Amorphous silicon in our experiment was partly transparent. This creates
+interference Effects, which lead to eigher very high or very low reflectivity of
+the silicon depending on the Wavelength. The reflectivity of amorphous silicon
+is seen in figure \ref{fig:amorphsilizium}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{bilder/AmorphSilizium.jpeg}
+  \caption{interference pattern in amorphous silicon}
+  \label{fig:amorphsilizium}
+\end{figure}
+The condition for destructive interference is following: 
+The thickness of the material $d$ needs to be just right in order to cause a phase shift
+between the first-reflection wave and the second-reflection wave of $\sfrac{\lambda}{2}$.
+This is condition is described in equation \ref{equ:thickness}. The number $m$ is the number
+waves within the material.
 \begin{equation}
-  QEF = \frac{I_{el}}{I_{photo}} = \frac{\sfrac{U}{R}}{\sfrac{P_{light}}{\sfrac{hc}{\lambda}}}
+  2d = \frac{(2m + 1)}{2} \cdot \lambda_n
+  \label{equ:thickness}
 \end{equation}
-mit $I_{photo} = \frac{P_{light}}{\frac{hc}{\lambda}} $ 
-
+The figure \ref{fig:amorphsilizium} shows a whole interference pattern. Each minimum is
+given by the condition above. From the difference of those interference minima it's
+possible to calculate the number of waves within the material\ref{equ:numwls}, and thus the thickness of the
+amorphous silicon.
+It's important to calculate these wavelenghts with the respect to the correct refractive indizes for
+the given wavelength, as the travelling time though the material causes the phase-shift.
+\begin{equation}
+  m = \frac{1}{2} \big( \frac{\lambda_2}{\lambda_1 - \lambda_2} - 1 \big)
+  \label{equ:numwls}
+\end{equation}
+with $\lambda_1 > \lambda_2$ \\
+The wavelenghts of minimal reflection \texttt{[1955.0nm, 1515.0nm, 1245.0nm]} and the refractive indizes of
+crystalline silicon at those give wavelenghts \texttt{[1.34, 1.33, 1.33]} were used.
+The resulting thickness for the amorphous silicon is $1286 \pm 24$ nm.\\
+\\
+The same interference effect is  used to optimize the efficiency of solar cells for
+the solar spectrum. The sun emits the most light in the range of 500 - 700 nm.
+To reduce the reflections for these wavelengths, one can apply a coating with an optical thickness
+of 150nm and use the interference effect to increase the absorbtion of light in the solar cells.
+The reflection spectrum of silicon with an anti-reflective coating is shown in figure \ref{fig:antireflectivecoating}.
 \begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{bilder/aSi_hell.jpeg}
-	\caption{amorphous silicon with light}
-	\label{fig:asi_hell}
+  \centering
+  \includegraphics[width=0.8\textwidth]{bilder/AntiReflectiveCoating.jpeg}
+  \caption{silicon with antireflective coating}
+  \label{fig:antireflectivecoating}
 \end{figure}
 
+\subsection{Electric properties of solar cells}
+\paragraph{Optimal point of operation}
+Solar cells have an optiumum point of operation where where their efficiency is maximal.
+This point can be measured by lighting the solar cell, connecting a reverse voltage to it,
+ans gradually changing it, while looking at the current. The optimal point of operation
+is when the $P = U * I$ is maximal.
+In figures \ref{fig:asi_hell} and \ref{fig:csi_hell} the voltage-current graphs 
+for amorphous and crystalline silicon are shown. The lightly marked area describes the
+Product of the short-circuit-current $I_{sc}$ and the maximum voltage with no current$U_{oc}$. 
+The stronger marked area describes power, which can be taken from the solar cell
+at it's optial point of operation $P_{opt} = U_{opt} \cdot I_{opt}$. The ratio between these two powers is called
+specific filling factor $FF = \sfrac{(U_{opt} \cdot I_{opt})}{(I_{sc} \cdot U_{oc})}$. This factor gives an information about the quality of the solar cell, especially with respect to the internal
+serial $R_s$ and parallel $R_p$ resistances within the solar cell. The power of the incoming light
+was tuned to be 100 $\sfrac{mW}{cm^2}$, and the diameter of the whole, into which the light fell was 3mm wide.
+With this information it was possible to calculate the incoming light power onto the solar cell, and the efficiency of the solar cell at it's optimal point.
+\newline
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|l|l|}
+  \hline
+  silicon type &  $R_p$ & $R_s$ & $FF$ & $U_{opt}$ & $I_{opt}$ & $\eta$ \\ \hline
+  amorphous    & $61 \pm 1 M\Omega$  & $221 \pm 5\Omega$ & 0.66 & $ 650 \pm 5 mV$ & $330 \pm 5\mu A$ & $3 \pm 1 \%$ \\ \hline
+  crystalline  & $5,89 \pm 0,4 k\Omega$ & $18 \pm 1 \Omega$ & 0.63 & $380 \pm 5 mV$ & $2880 \pm 5 \mu A$ & $15 \pm 4\%$ \\ \hline
+\end{tabular}
+\end{center}
 \begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{bilder/cSi_hell.jpeg}
-	\caption{crystalline silicon with light}
-	\label{fig:csi_hell}
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{bilder/aSi_hell.jpeg}
+    \caption{amorphous silicon with light}
+    \label{fig:asi_hell}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{bilder/cSi_hell.jpeg}
+    \caption{crystalline silicon with light}
+    \label{fig:csi_hell}
+  \end{subfigure}
+  \caption{voltage - current graphs of lighted cells}
+\end{figure}
+The serial resistances was determined at a point,
+where the parallel resistance had the least influence on the measurement, at a zero Voltage.
+As $R = \frac{\Delta U}{\Delta I} \rightarrow R_s = \frac{\partial U}{\partial I}|_{U = 0}$,
+and $R_P = \frac{\partial U}{\partial I}|_{I = 0}$.
+These tangents were made with a linear fit with at least three points closest to
+U = 0, and I = 0.
+The tangents are shown in figures \ref{fig:csi_hell}, \ref{fig:asi_hell}, \ref{fig:csi_dunkel} and \ref{fig:asi_dunkel}.
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{bilder/aSi_dunkel.jpeg}
+    \caption{amorphous silicon without light}
+    \label{fig:asi_dunkel}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{bilder/cSi_dunkel.jpeg}
+    \caption{crystalline silicon without light}
+    \label{fig:csi_dunkel}
+  \end{subfigure}
+  \caption{voltage - current graphs of unlighted cells}
 \end{figure}
 
+\paragraph{Quantum-efficiency of solar cells}
+The ratio between the incoming light-current and the produced
+electric current from a solar cell is called quantum efficiency.
+\begin{equation}
+  QEF(\lambda) = \frac{I_{el}}{I_{photo}} = \frac{U\cdot h \cdot}{P_{light} \cdot \lambda \cdot R}
+\end{equation}
+A halogen lamp and an apparatus with monochromator produced light of a certain wavelength.
+A pyrodetector measured the intensity at different wavelenghts of the light. With these intensities as
+a calibration, and the assumtion that the quantum-efficiency
+at highest plateau of the crystalline silicon cell is 0.9, it was possble to calculate a calibration factor
+to figure out other values for quantum efficiency at other wavelenghts.
+Using the voltages of the crystalline silicon cell $U_{csi}$ and the calibration voltages $U_{pyro}$, the yet unscaled quantum efficiency was calculated as follows:
+\begin{equation}
+  QEF(\lambda) = \frac{U_{csi}}{U_{pyro} \cdot \lambda}
+  \label{}
+\end{equation}
+For the calibration factor $\gamma$ the average of the values beween 950nm and 1030nm was taken and used as the scaling factor to be the quantumefficiency 0.9.
+With this scaling factor the quantum-efficiency of the amorphous solar cell was calculated.
+The figure \ref{fig:pyro} shows the calibration voltage of the pyrometer.
 \begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{bilder/aSi_dunkel.jpeg}
-	\caption{amorphous silicon without light}
-	\label{fig:asi_dunkel}
+  \centering
+  \includegraphics[width=0.8\textwidth]{bilder/photonenrate.jpeg}
+  \caption{Pyrodetector calibration voltage}
+  \label{fig:pyro}
 \end{figure}
-
+After dividing  by the pyrometer voltage times lambda and scaling the resultung quantum efficiency to the highest plateau, the figures \ref{fig:csi_qef} and \ref{fig:asi_qef} show
+the quantum efficiencies of crystalline and amorphous silicon.
 \begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{bilder/cSi_dunkel.jpeg}
-	\caption{crystalline silicon without light}
-	\label{fig:csi_dunkel}
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{bilder/Quanteneffizienz_asi.jpeg}
+    \caption{quantum-efficiency of amorphous silicon}
+    \label{fig:asi_qef}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{bilder/Quanteneffizienz_csi.jpeg}
+    \caption{quantum-efficiency of crystalline silicon}
+    \label{fig:csi_qef}
+  \end{subfigure}
+  \caption{quantum-efficiencies of crystalline and amorphous silicon}
 \end{figure}
-
+With the power spectrum of the sun it is possible to predict the short cirquit current of the solar cells.
+With the given Power in figure \ref{fig:sunspectrum} per cm$^2$ times 20nm $P$, and the area of the hole $A = \pi r^2 = 0.15cm^2 \pi$ the integration became a sum:
+\begin{equation}
+  I_{sc} = A  \cdot \sum_{350nm}^{1150nm} \frac{P \cdot \lambda \cdot QEF(\lambda)}{hc}
+\end{equation}
 \begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{bilder/PyramidSilizium.jpeg}
-	\caption{silicon mit pyramidal surface}
-	\label{fig:pyramidsilizium}
+  \centering
+  \includegraphics[width=0.8\textwidth]{bilder/Sonnenspektrum.jpeg}
+  \caption{Powerspectrum of sunlight at different wavelenghs}
+  \label{fig:sunspectrum}
 \end{figure}
+With the given sun spectrum, the measured quantum efficiencies and the lighted area of with radius 0.15cm the crystalline solar cell would produce approximately 32 nanoampere, and the amorphous solar cell would produce 51 microampere.
+The quantum efficiency of the amorphous solar cell is higher in those areas, where the sun-spectrum is more intense. This explains the higher short cirquit current of the amorphous silicon cell.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{bilder/BlackSilizium.jpeg}
-	\caption{black silicon}
-	\label{fig:blacksilizium}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{bilder/AntiReflectiveCoating.jpeg}
-	\caption{silicon with antireflective coating}
-	\label{fig:antireflectivecoating}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{bilder/AmorphSilizium.jpeg}
-	\caption{amorphous silicon}
-	\label{fig:amorphsilizium}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{bilder/CSIROUGH.jpeg}
-	\caption{rough crystalline silicon}
-	\label{fig:csirough}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{bilder/CSIFLAT.jpeg}
-	\caption{flat crystalline silicon}
-	\label{fig:csiflat}
-\end{figure}
-
-
-% Refractive Indizes for wavelenghts: [1.3401542420709966, 1.3385464618428113, 1.3373465151339419]
-% Wavelenghts: [1955.0, 1515.0, 1245.0]
-% average of thicknesses: 2573.78551071
-% stdev: 48.8916559744
-
-% aSi_hell R_s:
-% Slope: 0.221248354141 +- 0.00598591154658 * 1000
-% Fuellfakt: 0.663517208309
-% U0: 0.82
-% I0: -0.4001816
-% Uopt: 0.65
-% Iopt: -0.334973
-
-% cSi_hell R_s:
-% Slope: 0.0189208144653 +- 0.00113852276373 * 1000
-% Fuellfakt: 0.63293947741
-% U0: 0.5
-% I0: -3.466276
-% Uopt: 0.38
-% Iopt: -2.886767
-% P_opt = 0.00109 W
-
-% aSi_dunkel R_p:
-% Slope: 61855.6343105 +- 1147.30124568 * 1000
-% cSi_dunkel R_p:
-% Slope: 5.89957259165 +- 0.0459836610314 * 1000
-
-% Amorph Sil:
-% Popt: 0.21773245 +- 0.0916000818777
-% EFF: 0.0308028406125 +- 0.0143485915401
-% Crystalline Sil:
-% Popt: 1.09697146 +- 0.268660892204
-% EFF: 0.155189715813 +- 0.0490707888432
-
-% power = 0.0070 W  die pro solarzelle einfallen
-
-% I_csi: 57537.4825627 in photons
-% I_asi: 89162788.963 
-% I_csi: 9.21853441684e-15 in Coulomb
-% I_asi: 1.42854744794e-11
-
-%%% Local Variables:
+%%% local Variables:
 %%% mode: latex
 %%% TeX-master: "../photovoltaik"
 %%% End:

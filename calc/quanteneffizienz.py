@@ -90,8 +90,8 @@ def Integrate_over_sun_specre(quantum_efficiency):
     I = 0.0
     Area_in_cm2 = math.pi * 0.15**2  # radius of the hole = 0.15 cm 
     # Simple polygonal integration
-    for i in range( len(wls)-1): # i is index of array
-        P = (Watt_per_cm2[i] + Watt_per_cm2[i+1])/2 * Area_in_cm2
+    for i in range(len(wls)): # i is index of array
+        P = Watt_per_cm2[i] * Area_in_cm2
         I = I + (P * wls[i]* quantum_efficiency[i])/(hc)
     return I
         

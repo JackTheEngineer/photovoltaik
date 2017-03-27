@@ -17,6 +17,9 @@ from Measurement import LinFit
 plotsize_x = 9
 plotsize_y = 1/1.667 * plotsize_x # golden ratio for good looking graphs
 
+# plotsize_y = 9
+# plotsize_x = 1/1.667 * plotsize_y # golden ratio for good looking graphs
+
 min_wavelenghts = [1955.0, 1515.00, 1245.00]
 refr_indizes_of_silicon = []
 
@@ -144,9 +147,9 @@ def plot_Graph(x_arry, y_arry, filename, dot_label, y_label, x_label, y_errs = N
         axis.errorbar(x_arry, y_arry, xerr = x_errs, yerr =  y_errs, fmt = 'k.', label = dot_label)
     axis.legend(loc="best")
     axis.yaxis.grid(True, which='minor')
-#    axis.yaxis.grid(True, which='') 
+    axis.yaxis.grid(True, which='major') 
     axis.xaxis.grid(True, which='minor')
-#    axis.xaxis.grid(True, which='major')    
+    axis.xaxis.grid(True, which='major')    
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     figure.savefig(filename, bbox_inches='tight')
@@ -170,7 +173,7 @@ def Calculate_thickness_amorph_sil(refr_indizes_of_sil, min_wls):
         lambd_1 = min_wls[i]*1/refr_indizes_of_sil[i]
         lambd_2 = min_wls[(i+1)]*1/refr_indizes_of_sil[(i+1)]
         n = num_of_waves_in_glass(lambd_1, lambd_2)
-        thicknesses.append((2*n +1)*lambd_1*1/2)
+        thicknesses.append((2*n +1)*lambd_1*1/4)
 
     avg = np.average(np.array(thicknesses))
     dev = np.std(np.array(thicknesses))
@@ -246,7 +249,7 @@ def plot_voltage_graph(ref_file):
         minorLocator1 = AutoMinorLocator()
         minorLocator2 = AutoMinorLocator()
         axis.plot(voltage, scaled_curr, 'k.', label = pl["Material"])
-        axis.plot(volt_fit_dots, curr_fit_dots, 'r--', label = fitlabel)
+        axis.plot(volt_fit_dots, curr_fit_dots, 'r-', label = fitlabel)
         axis.add_patch(
             patches.Rectangle(
                 (0.0, 0.0),
