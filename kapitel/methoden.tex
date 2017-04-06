@@ -1,4 +1,20 @@
-\section{Grundlagen}
+\section{Basic functions of solar cells}
+On the most basic level a solar cell consists of both a p-doped and a n-doped semi-conducter in physical contact. \newline
+As its name implies a semiconducters ability to conduct electricity lies between that of an conductor and an insulator, what can be made vivid using the following image of the conduction and valence bands of these three types of materials, depicted in figure \ref{fig:bands}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{bilder/bands}
+	\caption{Depiction of the energy bands for different types of materials}
+	\label{fig:bands}
+\end{figure}
+These bands occur because of the interaction between valence electrons of the atoms in a crystal and therefore forming binding and anti-bindig orbitals with different energies. \newline
+While only the empty or not fully filled energy bands, the conduction bands, contribute to the electrical conductivity, the full valence bands don't. \newline
+This can be seen in figure \ref{fig:bands} where the valence bands for metals aren't completely full so the electrons can move and therefore conduct electricity, while for semiconductors and insulators there is an energy gap  between the valence and conduction band. In the case of semiconductors however this gap can be overcome by exiting the electrons from the valence into the conduction band. \newline
+This process can be simplified by doping pure semiconductors, meaning the intentional injection of foreign atoms. Also there are two types of of dopings, the p- and the n-doping. The first one describes the injection of foreign atoms with less valence electrons than the crystal atoms, for instance boron atoms in a silicon crystal. These atoms are called aceptors. This has the effect, that there are missing electrons, which can be described as holes with a positive charge, which can rather freely travel through the crystal. These atoms are called donators. \newline
+n-doped semiconductors on the other side are infused with atoms, that have more electrons than the crystal atoms, like phosphorous atoms in a silicon crystal. With this you get free electrons, which can be similarly described as the free holes above. \newline
+Bringing two differently doped semiconductors in contact with each other results in a so called p-n-junction, what is exactly what a solar cell consists of. This p-n-junction has some interesting properties. For example, by bringing these two differently doped semiconductors in contact with each other the free electrons from the n-doped side diffuse to the p-doped side in order to fill the electron holes the aceptors created. This results in a so called depletion region in which there are no free charges but only the fixed ionized cores of the foreing atoms. The donators are positively charged due to loosing their extra electron, while the aceptors are negatively charged because of exactly this electron filling the hole. This separation of charges than results in a electrical potential, that is hard to overcome for charged particles from outside of the depletion region, if not provided with enough energy. \newline
+If a photon now enters the p-doped part of the depletion region it seperate electrons from the atomic cores in this area, producing negative and positive charges in the process. The negative electrons are than repelled by the negatively charged aceptors in the p-doped part, while the positively charged donators attract them and therefore the electrons travel through the depletion region to the n-doped side where they can be tapped by various electrical contacts. The exact same argumentation can be applied to the positive ion created by the photon, with the only difference that it is moving away from the n-doped side further into the p-doped side because of the difference of charge. 
+This photocurrent can than be used to power various components.
 
 %%% Local Variables:
 %%% mode: latex
